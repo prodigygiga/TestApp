@@ -15,7 +15,7 @@ namespace WindowsFormsApp2
         public bool IsMarried { get; set; }
         public Decimal Height { get; set; }
 
-        //Person() { }
+        public Person() { }
 
         public Person(string firstName, string lastName)
         {

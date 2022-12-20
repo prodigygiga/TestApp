@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp2.Db;
 
 namespace WindowsFormsApp2
 {
     public partial class Form1 : Form
     {
-        public List<Person> people = new List<Person>();
+        
         public Form1()
         {
             InitializeComponent();
@@ -20,8 +21,7 @@ namespace WindowsFormsApp2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            InitializeData();
-            dataGridView1.DataSource= people;
+            dataGridView1.DataSource= GetPeopleFromDb();
         }
 
         private void InitializeData()
@@ -40,9 +40,14 @@ namespace WindowsFormsApp2
             p2.BirthDate = new DateTime(2001, 7, 22);
             p2.Height = 1.8m;
 
-            //Console.WriteLine("asaki aris: " + p1.CalculateAndDisplayAge());
-            people.Add(p1);
-            people.Add(p2);
+
+        }
+
+
+        private List<Person> GetPeopleFromDb()
+        {
+            DbManager dbManager = new DbManager();
+            return dbManager.GetAllPersons();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -55,7 +60,7 @@ namespace WindowsFormsApp2
         public void refresh()
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource= people;
+            dataGridView1.DataSource= GetPeopleFromDb();
         }
     }
 }

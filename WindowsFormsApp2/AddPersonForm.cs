@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp2.Db;
 
 namespace WindowsFormsApp2
 {
@@ -20,10 +21,13 @@ namespace WindowsFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Person p1 = new Person(textBox1.Text, "");
-            p1.BirthDate = dateTimePicker1.Value; 
-
-            mainForm.people.Add(p1);
+            Person p1 = new Person(textBox1.Text, "yifiani");
+            p1.BirthDate = dateTimePicker1.Value;
+            p1.IsMarried = true;
+            DbManager dbManager = new DbManager();
+            dbManager.AddPerson(p1);
+            
+            //mainForm.people.Add(p1);
             mainForm.refresh();
 
             this.Close();
